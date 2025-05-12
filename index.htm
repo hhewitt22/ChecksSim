@@ -14,9 +14,27 @@
       height: 100vh;
       background: #f4f7fa;
     }
-     #simulation {
-       background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
-    }
+
+#leftPane {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  padding: 20px;
+}
+
+#simulation {
+  flex: none;
+  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+  border-radius: 10px;
+}
+    
+#results {
+  margin-top: 20px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
 
     #controls {
       flex: 1;
@@ -73,9 +91,18 @@
   </style>
 </head>
 <body>
+  <div id="leftPane">
   <div id="simulation">
     <canvas id="simCanvas" width="800" height="400"></canvas>
   </div>
+  <div id="results">
+    <h3>Particle Outcomes</h3>
+    <canvas id="barGraph" width="300" height="200" style="background: #fff; border: 1px solid #ccc; border-radius: 6px;"></canvas>
+    <h3>Integrity Score</h3>
+    <div id="integrityScore"></div>
+  </div>
+</div>
+
   <div id="controls">
     <h3>Filter Controls</h3>
     <div id="filterControls"></div>
@@ -86,11 +113,7 @@
     <button onclick="pauseSim()">Pause</button>
     <h3>Metrics</h3>
     <div class="metrics" id="metricsPane"></div>
-    <h3>Particle Outcomes</h3>
-<canvas id="barGraph" width="300" height="200" style="background: #fff; border: 1px solid #ccc; border-radius: 6px;"></canvas>
-<h3>Integrity Score</h3>
-    <div id="integrityScore"></div>
-  </div>
+     </div>
   <script>
     const canvas = document.getElementById('simCanvas');
     const ctx = canvas.getContext('2d');
